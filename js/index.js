@@ -23,15 +23,11 @@
         buttons: [
           $.extend({}, vex.dialog.buttons.YES, {
             text: 'Share'
-          }),
-          $.extend({}, vex.dialog.buttons.NO, {
-            text: 'Cancel'
           })
+          
         ],
         callback: function(data) {
-          if (!data) {
-            console.log('Cancelled')
-          } else {
+          
 
             var userEmail = data.useremail;
             var userPassword = data.userkey;
@@ -61,7 +57,7 @@
 
           }
         }
-      })
+      )
       
       function goTo(){
         window.open("dashboard.html");
