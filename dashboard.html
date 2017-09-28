@@ -40,8 +40,6 @@
   <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
   <script type="text/javascript">
     vex.defaultOptions.className = 'vex-theme-os';
-
-
     var config = {
       apiKey: "AIzaSyBbcLi-m0HXKH34_wMwrbS1L9v2qMly7FA",
       authDomain: "sharebeats-a6c19.firebaseapp.com",
@@ -51,10 +49,7 @@
       messagingSenderId: "36050196872"
     };
     firebase.initializeApp(config);
-
-
     function getUserName() {
-
       vex.dialog.open({
         message: 'Enter your username and password: (Wait for the confirmation before using our service)',
         input: [
@@ -77,7 +72,6 @@
             //Create a database reference 
             const dbRef = firebase.database().ref(userDetails);
             console.log('Username', data.username, 'Password', data.password);
-
             //Start
             dbRef.on('value', snap => {
               console.log(snap.val())
@@ -92,14 +86,11 @@
               }
             });
             //End of firebase function 
-
           }
         }
       })
     }
-
     function shareMusic() {
-
       vex.dialog.open({
         message: 'Share some Beats!',
         input: [
@@ -118,24 +109,20 @@
           if (!data) {
             console.log('Cancelled')
           } else {
-
             var friendName = data.friendname;
             var myName = localStorage.getItem("myUserName");
-            var songName = data.trackname;
+            var trackName = data.trackname;
             var userRef = firebase.database().ref("userData/" + friendName + "/musicData/" + myName);
             alert(userRef);
             userRef.set({
               songName: trackName,
             });
             vex.dialog.alert('Your song has been shared');
-
             //End of firebase function 
-
           }
         }
       })
     }
-
     function getMusic() {
       var musicRef = firebase.database().ref("userData/" + localStorage.getItem("myUserName") + "/musicData/");
       musicRef.on('value', snap => {
@@ -143,11 +130,9 @@
         var musicData = snap.val();
         alert(JSON.stringify(musicData));
         var processData = JSON.stringify(musicData);
-
         function escapeRegExp(string) {
           return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         }
-
         function replaceAll(str, term, replacement) {
           return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
         }
@@ -166,7 +151,6 @@
         console.log(result1, result2, result3, result4, result5);
       });
     }
-
     
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
