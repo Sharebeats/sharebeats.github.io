@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ShareBeats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/cayman.css">
+  <link rel="stylesheet" href="css/vex.css" />
+  <link rel="stylesheet" type="text/css" href="css/vex-theme-os.css" />
+
+</head>
+
+<body onload="load()">
+  <section class="page-header">
+    <h1 class="project-name">ShareBeats</h1>
+    <h2 class="project-tagline">Your Hub to Share some Beats with your Pals!</h2>
+    <button href="#" class="btn" onclick="userSignUp()">Sign Up</button>
+    <button href="dashboard.html" class="btn">Log In</button><br><br>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </section>
+
+  <section class="main-content">
+
+    <p><code><b>ShareBeats is a simple music sharing website which allows you to share music with your friends with just a click.</b></code></p>
+
+    <p><code>ShareBeats was born when a bunch of youngsters found it difficult to follow the new trends in the music world, by sharing their songs over WhatsApp and Messenger. We wanted to make a service that all of us could use to share our favourite songs with just a click and here is the result of 72 hours of work.</code></p>
+    <p><a href="https://unsplash.com/@arstyy?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank"><img src="css/austin-neill-247047.jpg" alt="" data-canonical-src="https://placekitten.com/g/1200/800/" style="max-width:100%;"></a></p>
+
+    <pre><code>Unleash your Beats - Photo by <a href="https://unsplash.com/@arstyy?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Austin Neil</a> from <a href="www.unsplash.com">Unsplash</a></code></pre>
+
+    <p><code><b>How to use ShareBeats?</b> <br>It's pretty simple. First time users must sign up, and those who visit us again must login. Your dashboard has the list of music people have shared with you. Click the <b>ShareBeats</b>  button to share music with your firends. Enter your friend's username (aided with a simple autocomplete) and your favourite track. Then you are good to go</code></p>
+
+    <p><code>Good luck from ShareBeats Team</code></p>
+
+    <p><code>Please tweet your feedback here </code><a href="https://twitter.com/intent/tweet?screen_name=harsith2002" class="twitter-mention-button" data-show-count="false">Tweet to @harsith2002</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+    <footer class="site-footer">
+      <span class="site-footer-owner">ShareBeats is made by <a href="https://github.com/harsithr">harsithr</a>.</span><br>
+      <span class="site-footer-credits">This page is hosted by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+    </footer>
+
+  </section>
+  <script type="text/javascript" src="js/vex.combined.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  <script type="text/javascript">
+    vex.defaultOptions.className = 'vex-theme-os';
+
+    function load() {
+      var config = {
+        apiKey: "AIzaSyBbcLi-m0HXKH34_wMwrbS1L9v2qMly7FA",
+        authDomain: "sharebeats-a6c19.firebaseapp.com",
+        databaseURL: "https://sharebeats-a6c19.firebaseio.com",
+        projectId: "sharebeats-a6c19",
+        storageBucket: "sharebeats-a6c19.appspot.com",
+        messagingSenderId: "36050196872"
+      };
+      firebase.initializeApp(config);
+    }
+
+    function userSignUp() {
+      vex.dialog.open({
+        message: 'Share some Beats!',
+        input: [
+          '<input name="username" type="text" placeholder="Your username" required />',
+          '<input name="useremail" type="text" placeholder="Your email" required />',
+          '<input name="userkey" type="password" placeholder="Your passkey" required />'
+        ].join(''),
+        buttons: [
+          $.extend({}, vex.dialog.buttons.YES, {
+            text: 'Share'
+          }),
+          $.extend({}, vex.dialog.buttons.NO, {
+            text: 'Cancel'
+          })
+        ],
+        callback: function(data) {
+          if (!data) {
+            console.log('Cancelled')
+          } else {
+
+            var userEmail = data.useremail;
+            var userPassword = data.userkey;
+            var userId = data.username;
+            var userRef = firebase.database().ref("userData/" + userId);
+            userRef.set({
+              data: {
+                userId,
+                userPassword,
+                userEmail
+              },
+
+              musicData: {
+                music: "Music"
+              }
+
+            });
+
+            var userList = firebase.database().ref("userList/" + userId);
+            userList.set({
+              userName: userId
+            })
+            vex.dialog.alert('Your account has been created');
+            window.location.href("dashboard.html");
+
+            //End of firebase function 
+
+          }
+        }
+      })
+
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>
