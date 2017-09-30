@@ -129,7 +129,7 @@ function shareMusic() {
         } else {
           var str = localStorage.getItem("userListDB");
           var n = str.indexOf(data.username);
-          if (n > -1) {
+          if (n == -1) {
             var friendName = data.friendname;
             var myName = localStorage.getItem("myUserName");
             var trackName = data.trackname;
