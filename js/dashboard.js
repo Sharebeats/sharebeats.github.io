@@ -8,12 +8,33 @@ var config = {
   messagingSenderId: "36050196872"
 };
 firebase.initializeApp(config);
+var userList = firebase.database().ref("userList");
+userList.on('value', snap => {
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  function replaceAll(str, term, replacement) {
+    return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
+  }
+  var userListJSON = JSON.stringify(snap.val());
+  console.log(userListJSON); //{"Ravichandran":{"xox":"xox"},"harsith2002":{"xox":"xox"},"jack_dorsey":{"xox":"xox"}}
+  var z = userListJSON.replace('{"', "<option>")
+  var a = replaceAll(z, '":{"xox":"xox"}', "</option><option>");
+  var b = a.replace('}', "</option>");
+  var c = replaceAll(b, ',"', '');
+  var d = replaceAll(c, '<option></option>', " ")
+  console.log(d);
+  localStorage.setItem("userListDB", d);
+})
 
 function getUserName() {
+  var userNameModal = '<input name="username" type="text" placeholder="Username" required />';
+
   vex.dialog.open({
     message: 'Enter your username and password: (Wait for the confirmation before using our service)',
     input: [
-          '<input name="username" type="text" placeholder="Username" required />',
+          userNameModal,
           '<input name="password" type="password" placeholder="Password" required />'
         ].join(''),
     buttons: [
@@ -21,12 +42,12 @@ function getUserName() {
         text: 'Login'
       }),
           $.extend({}, vex.dialog.buttons.NO, {
-        text: 'Back'
+        text: 'Cancel'
       })
         ],
     callback: function (data) {
       if (!data) {
-        console.log('Cancelled')
+        window.location.href = ("index.html");
       } else {
         var userDetails = "userData/" + data.username + "/data/userPassword";
         //Create a database reference 
@@ -39,10 +60,23 @@ function getUserName() {
           if (data.password == snap.val()) {
             vex.dialog.alert("Hey " + data.username + ". You have logged in");
             localStorage.setItem("myUserName", data.username);
-            //window.location.href = "test.html";
+            var nameFromDB = document.getElementById('project-name');
+      nameFromDB.innerHTML = "Hey, "+data.username;
+            var textFromDB = document.getElementById('project-tagline');
+            textFromDB.innerHTML="Get on to share some music!";
+            
           } else {
-            vex.dialog.alert("Sorry. Your credentials don't match");
-            window.location.href = ("index.html");
+            vex.dialog.confirm({
+              message: "Your credentials don't match",
+              callback: function (value) {
+                if (value) {
+                  window.location.href = ("index.html");
+                } else {
+                  window.location.href = ("dashboard.html");
+                }
+              }
+            })
+
           }
         });
         //End of firebase function 
@@ -52,35 +86,67 @@ function getUserName() {
 }
 
 function shareMusic() {
-  vex.dialog.open({
-    message: 'Share some Beats!',
-    input: [
-          '<input name="friendname" type="text" placeholder="Your friends user name" required />',
+  var userList = firebase.database().ref("userList");
+
+  userList.on('value', snap => {
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function replaceAll(str, term, replacement) {
+      return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
+    }
+    var userListJSON = JSON.stringify(snap.val());
+    console.log(userListJSON); //{"Ravichandran":{"xox":"xox"},"harsith2002":{"xox":"xox"},"jack_dorsey":{"xox":"xox"}}
+    var z = userListJSON.replace('{"', "<option>")
+    var a = replaceAll(z, '":{"xox":"xox"}', "</option><option>");
+    var b = a.replace('}', "</option>");
+    var c = replaceAll(b, ',"', '');
+    var d = replaceAll(c, '<option></option>', " ")
+    console.log(d);
+
+    var friendName = '<input name="friendname" type="text" placeholder="Your friends username" class="awesomplete" list="mylist" /><datalist id="mylist">' + d + '</datalist>'
+
+    console.log(userList);
+    vex.dialog.open({
+      message: 'Share some Beats!',
+      input: [
+          friendName,
           '<input name="trackname" type="text" placeholder="The beats you want to share" required />',
         ].join(''),
-    buttons: [
+      buttons: [
           $.extend({}, vex.dialog.buttons.YES, {
-        text: 'Share'
-      }),
+          text: 'Share some Beats!'
+        }),
           $.extend({}, vex.dialog.buttons.NO, {
-        text: 'Cancel'
-      })
+          text: 'Cancel'
+        })
         ],
-    callback: function (data) {
-      if (!data) {
-        console.log('Cancelled')
-      } else {
-        var friendName = data.friendname;
-        var myName = localStorage.getItem("myUserName");
-        var trackName = data.trackname;
-        var userRef = firebase.database().ref("userData/" + friendName + "/musicData/" + myName);
-        userRef.set({
-          songName: trackName,
-        });
-        vex.dialog.alert('Your song has been shared');
-        //End of firebase function 
+      callback: function (data) {
+
+        if (!data) {
+          console.log('Cancelled')
+        } else {
+          var str = localStorage.getItem("userListDB");
+          var n = str.indexOf(data.username);
+          if (n > -1) {
+            var friendName = data.friendname;
+            var myName = localStorage.getItem("myUserName");
+            var trackName = data.trackname;
+            var userRef = firebase.database().ref("userData/" + friendName + "/musicData/" + myName + "/" + trackName);
+            userRef.set({
+              x: "x",
+            });
+            vex.dialog.alert('Your song has been shared');
+
+          } else {
+            vex.dialog.alert("You song is not shared. Enter a valid friends username");
+          }
+
+          //End of firebase function 
+        }
       }
-    }
+    })
   })
 }
 
@@ -89,8 +155,9 @@ function getMusic() {
   musicRef.on('value', snap => {
     console.log(snap.val());
     var musicData = snap.val();
-    
+
     var processData = JSON.stringify(musicData);
+    console.log(processData);
 
     function escapeRegExp(string) {
       return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -99,16 +166,26 @@ function getMusic() {
     function replaceAll(str, term, replacement) {
       return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
     }
-    var res = processData.replace('"', "___");
-    var result = replaceAll(res, "{", "");
-    var result1 = replaceAll(result, "}", "");
-    var result2 = replaceAll(result1, '"', "");
-    var result3 = replaceAll(result2, '"', "");
-    var result4 = replaceAll(result3, "songName", "");
-    var result5 = replaceAll(result4, "::", " - ");
-    var result6 = replaceAll(result5, '___', "<ol><li>")
-    var finalResult = replaceAll(result6, ",", "</li><li>");
-    var audioList = document.getElementById('music_list');
-    audioList.innerHTML = finalResult;
+    if (processData == '{"music":"Music"}') {
+      var audioList = document.getElementById('music_list');
+      audioList.innerHTML = "   You don't have any shared music as of now. Go to <a>Get my Beats!</a> to check your beats";
+      vex.dialog.alert('Sorry! No one has shared any beats with you.');
+    } else {
+      var r1 = replaceAll(processData, '":{"x":"x"}', '</li><li>');
+      var r0 = replaceAll(r1, "}}", "__");
+      var r2 = replaceAll(r0, ":", "<ul>");
+      var r3 = replaceAll(r2, ',"', "");
+      var r4 = replaceAll(r3, '{"', '<li>');
+      var r5 = replaceAll(r4, '<li>}', '</ul><li>');
+      var r6 = replaceAll(r5, '"', "");
+      var r7 = replaceAll(r6, "}", "");
+      var r8 = replaceAll(r6, '<li>__', '</ul>')
+      console.log(r8);
+      var audioList = document.getElementById('music_list');
+      audioList.innerHTML = r8;
+      vex.dialog.alert('Check out your shared beats here!');
+    }
+
+
   });
 }

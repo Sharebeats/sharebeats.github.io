@@ -7,7 +7,7 @@ body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  color: #606c71; }
+  background-color: white; }
 
 a {
   color: #1e6bb8;
@@ -177,7 +177,7 @@ a {
     .main-content pre tt:before,
     .main-content pre tt:after {
       content: normal; }
-  .main-content ul,
+  
   .main-content ol {
     margin-top: 0; }
   .main-content blockquote {
@@ -239,3 +239,55 @@ a {
 
 .site-footer-credits {
   color: #819198; }
+
+.note-box {
+    padding-top: 23px;
+    padding-top: 1.64285714rem;
+    overflow: hidden
+}
+.note-box p:last-child,
+ {
+    margin-bottom: 23px;
+    margin-bottom: 1.64285714rem
+}
+.note-box .highlight:last-child {
+    margin-bottom: -1px;
+    margin-bottom: -0.07142857rem
+}
+.note-stack {
+    border-bottom: 1px solid #cecfd5;
+    border-bottom: 0.07142857rem solid #cecfd5
+}
+.demo-title {
+    margin: 23px 30px;
+    margin: 1.64285714rem 2.14285714rem
+}
+.note-box .demo-title {
+    margin: 23px 0;
+    margin: 1.64285714rem 0
+}
+.note-box .demo-code {
+    margin: 0 -30px;
+    margin: 0 -2.14285714rem
+}
+.btn {
+    border: 0;
+    padding: 12px 22.5px;
+    padding: 0.85714286rem 1.60714286rem
+}
+
+.note,
+{
+    margin-bottom: 24px;
+    margin-bottom: 1.71428571rem
+}
+.note-box,
+.codepen,
+.aside-micro,
+.primary-logo {
+    padding-left: 30px;
+    padding-left: 2.14285714rem;
+    padding-right: 30px;
+    padding-right: 2.14285714rem
+}
+
