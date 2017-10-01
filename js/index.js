@@ -11,37 +11,16 @@
       };
       firebase.initializeApp(config);
         var userList = firebase.database().ref("userList");
-
-  userList.on('value', snap => {
-    function escapeRegExp(string) {
-      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     }
-
-    function replaceAll(str, term, replacement) {
-      return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
-    }
-    var userListJSON = JSON.stringify(snap.val());
-    console.log(userListJSON); //{"Ravichandran":{"xox":"xox"},"harsith2002":{"xox":"xox"},"jack_dorsey":{"xox":"xox"}}
-    var z = userListJSON.replace('{"', "<option>")
-    var a = replaceAll(z, '":{"xox":"xox"}', "</option><option>");
-    var b = a.replace('}', "</option>");
-    var c = replaceAll(b, ',"', '');
-    var d = replaceAll(c, '<option></option>', " ")
-    console.log(d);
-    localStorage.setItem("userListDB",d);
-    })}
+  
 
     function userSignUp() {
-                 
-
-           
-        var inputUserName = '<input name="username" type="text" placeholder="Your username" class="awesomplete" list="mylist" /><datalist id="mylist">' + localStorage.getItem("userListDB") + '</datalist>'     
-             
+   
       vex.dialog.open({
         
         message: 'Create an account: ',
         input: [
-          inputUserName,
+          '<input name="username" type="text" placeholder="Your username" list="mylist" />',
           '<input name="useremail" type="text" placeholder="Your email" required />',
           '<input name="userkey" type="password" placeholder="Your passkey" required />'
         ].join(''),
@@ -79,7 +58,7 @@ var n = str.indexOf(data.username);
               xox: "xox"
             })
             vex.dialog.confirm({
-              message: "Your account has been created",
+              message: "Your account has been created with the username: "+data.username + " and password: "+data.userkey,
               callback: function (value) {
                 if (value) {
                   window.location.href = ("dashboard.html");
@@ -106,13 +85,13 @@ var n = str.indexOf(data.username);
 
           }
         }
-      )
+      )}
       
       function goTo(){
         window.location.href = ("dashboard.html");
       }
 
-    }
+    
 
 
 /*
