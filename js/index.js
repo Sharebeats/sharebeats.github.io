@@ -24,18 +24,18 @@
           '<input name="useremail" type="text" placeholder="Your email" required />',
           '<input name="userkey" type="password" placeholder="Your passkey" required />'
         ].join(''),
-        buttons: [
+         buttons: [
           $.extend({}, vex.dialog.buttons.YES, {
-            text: 'Create my account'
-          })
+        text: 'Create account'
+      }),
           $.extend({}, vex.dialog.buttons.NO, {
         text: 'Cancel'
-      }),
-          
+      })
         ],
         
         callback: function(data) {
-          var str = localStorage.getItem("userListDB");
+          
+              var str = localStorage.getItem("userListDB");
 var n = str.indexOf(data.username);
           if((/^[\w\-\s]+$/.test(data.username)!==false)&&(/^[\w\-\s]+$/.test(data.userkey)!==false)){
              if(n==-1){
@@ -80,6 +80,8 @@ var n = str.indexOf(data.username);
              else{
                vex.dialog.alert("Your account hasn't been created. Please enter only alphanumeric characters and underscores");
              }
+          }
+        
           
 
             
@@ -87,7 +89,7 @@ var n = str.indexOf(data.username);
             //End of firebase function 
 
           }
-        }
+        
       )}
       
       function goTo(){
