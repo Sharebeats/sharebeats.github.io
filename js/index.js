@@ -15,33 +15,18 @@
   
 
     function userSignUp() {
-   
-      vex.dialog.open({
-        
-        message: 'Create an account: ',
-        input: [
-          '<input name="username" type="text" placeholder="Your username" list="mylist" />',
-          '<input name="useremail" type="text" placeholder="Your email" required />',
-          '<input name="userkey" type="password" placeholder="Your passkey" required />'
-        ].join(''),
-         buttons: [
-          $.extend({}, vex.dialog.buttons.YES, {
-        text: 'Create account'
-      }),
-          $.extend({}, vex.dialog.buttons.NO, {
-        text: 'Cancel'
-      })
-        ],
-        
-        callback: function(data) {
+   var username = document.getElementById("userName").value;
+      var userkey = document.getElementById("userPassword").value;
+      var useremail = document.getElementById("userEmail").value;
+      
           
               var str = localStorage.getItem("userListDB");
-var n = str.indexOf(data.username);
-          if((/^[\w\-\s]+$/.test(data.username)!==false)&&(/^[\w\-\s]+$/.test(data.userkey)!==false)){
+var n = str.indexOf(username);
+          if((/^[\w\-\s]+$/.test(username)!==false)&&(/^[\w\-\s]+$/.test(userkey)!==false)){
              if(n==-1){
-            var userEmail = data.useremail;
-            var userPassword = data.userkey;
-            var userId = data.username;
+            var userEmail = useremail;
+            var userPassword = userkey;
+            var userId = username;
             var userRef = firebase.database().ref("userData/" + userId);
             userRef.set({
               data: {
@@ -61,7 +46,7 @@ var n = str.indexOf(data.username);
               xox: "xox"
             })
             vex.dialog.confirm({
-              message: "Your account has been created with the username: "+data.username + " and password: "+data.userkey,
+              message: "Your account has been created with the username: "+username + " and password: "+userkey,
               callback: function (value) {
                 if (value) {
                   window.location.href = ("dashboard.html");
@@ -88,9 +73,9 @@ var n = str.indexOf(data.username);
 
             //End of firebase function 
 
-          }
+          
         
-      )}
+      
       
       function goTo(){
         window.location.href = ("dashboard.html");
