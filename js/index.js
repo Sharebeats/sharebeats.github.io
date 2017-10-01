@@ -28,6 +28,9 @@
           $.extend({}, vex.dialog.buttons.YES, {
             text: 'Create my account'
           })
+          $.extend({}, vex.dialog.buttons.NO, {
+        text: 'Cancel'
+      }),
           
         ],
         
