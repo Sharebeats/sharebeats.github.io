@@ -18,7 +18,7 @@ userList.on('value', snap => {
     return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
   }
   var userListJSON = JSON.stringify(snap.val());
-  console.log(userListJSON); //{"Ravichandran":{"xox":"xox"},"harsith2002":{"xox":"xox"},"jack_dorsey":{"xox":"xox"}}
+  console.log(userListJSON); 
   var z = userListJSON.replace('{"', "<option>")
   var a = replaceAll(z, '":{"xox":"xox"}', "</option><option>");
   var b = a.replace('}', "</option>");
@@ -28,7 +28,24 @@ userList.on('value', snap => {
   localStorage.setItem("userListDB", d);
 })
 
-function getUserName() {
+function load() {
+  
+  vex.dialog.confirm({
+    message: "Hey there! This a short user tour of the ShareBeats dashboard. You may skip it if this isn't your first time. Click 'Ok' to proceed",
+    callback: function (value) {
+        if (value) {
+            vex.dialog.alert("Please tweet your feedback and help us share the word");
+  vex.dialog.alert("Instantaneously listen to a 30 sec preview with Apple Music");
+  vex.dialog.alert("Click 'Get Music' update the list of beats your friends have shared with you, and check the list below");
+
+            vex.dialog.alert("Click on 'Share Beats' to share some beats with your friends. Remember to enter on alphanumeric characters and underscores only");
+
+  
+        } else {
+            console.log('Chicken.');
+        }
+    }
+})
   var userNameModal = '<input name="username" type="text" placeholder="Username" required />';
 
   vex.dialog.open({
@@ -128,8 +145,9 @@ function shareMusic() {
           console.log('Cancelled')
         } else {
           var str = localStorage.getItem("userListDB");
-          var n = str.indexOf(data.username);
-          if (n == -1) {
+    var n = str.indexOf(data.friendname);
+          if((/^[\w\-\s]+$/.test(data.friendname)!==false)&&(/^[\w\-\s]+$/.test(data.trackname)!==false)){
+             if (n !== -1) {
             var friendName = data.friendname;
             var myName = localStorage.getItem("myUserName");
             var trackName = data.trackname;
@@ -143,6 +161,9 @@ function shareMusic() {
             vex.dialog.alert("You song is not shared. Enter a valid friends username");
           }
 
+             }
+        else{vex.dialog.alert("Your song hasn't been shared. Please enter only alphanumeric characters and underscores");}
+          
           //End of firebase function 
         }
       }
@@ -179,10 +200,11 @@ function getMusic() {
       var r5 = replaceAll(r4, '<li>}', '</ul><li>');
       var r6 = replaceAll(r5, '"', "");
       var r7 = replaceAll(r6, "}", "");
-      var r8 = replaceAll(r6, '<li>__', '</ul>')
-      console.log(r8);
+      var r8 = replaceAll(r7, '<li>__', '</ul>');
+      var r9 = replaceAll(r8,"<li>music<ul>Music","");
+      console.log(r9);
       var audioList = document.getElementById('music_list');
-      audioList.innerHTML = r8;
+      audioList.innerHTML = r9;
       vex.dialog.alert('Check out your shared beats here!');
     }
 

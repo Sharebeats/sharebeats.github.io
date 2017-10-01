@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ShareBeats</title>
+  <title>ShareBeats - Your music sharing hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <link rel="stylesheet" href="css/normalize.css">
@@ -14,41 +14,46 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="css/awesomplete.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/joyride/2.1.0/joyride.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/joyride/2.1.0/jquery.joyride.min.js"></script>
+
+
 
 </head>
 
-<body onload="getUserName()">
+<body onload="load()">
   <section class="page-header">
     <h1 class="project-name" id="project-name">ShareBeats</h1>
     <h2 class="project-tagline" id="project-tagline">Your Hub to Share some Beats with your Pals!</h2>
-    <button href="#" class="btn" onclick="shareMusic()">Share some Beats!</button>
-    <button href="#" class="btn" onclick="getMusic()">Get my Beats!</button><br><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <button href="#" class="btn" onclick="shareMusic()" id="share_music">Share some Beats!</button>
+    <button href="#" class="btn" onclick="getMusic()" id="get_music" >Get my Beats!</button>
+    <br>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" id="tweet">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
   </section>
 
   <section class="main-content">
-    <iframe src="https://widgets.itunes.apple.com/widget.html?c=us&brc=FFFFFF&blc=FFFFFF&trc=FFFFFF&tlc=FFFFFF&d=&t=&m=music&e=album&ids=&wt=search&partnerId=&affiliate_id=&at=&ct=" frameborder=0 style="overflow-x:hidden;overflow-y:hidden;width:250px;height: 300px;border:0px"></iframe>
+    
 
     <h5>This is all your music!</h5>
     <ul class="w3-ul w3-border" id="music_list">
       <li>You don't have any shared music as of now. Go to <a>Get my Beats!</a> to check your beats</li>
     </ul>
 <br>
+    <iframe id="apple_music" src="https://widgets.itunes.apple.com/widget.html?c=us&brc=FFFFFF&blc=FFFFFF&trc=FFFFFF&tlc=FFFFFF&d=&t=&m=music&e=album&ids=&wt=search&partnerId=&affiliate_id=&at=&ct=" frameborder=0 style="overflow-x:hidden;overflow-y:hidden;width:250px;height: 300px;border:0px"></iframe>
     <hr>
-    <p>Please tweet your feedback here <a href="https://twitter.com/intent/tweet?screen_name=harsith2002&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @harsith2002</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+    <p>Please tweet your feedback here <a href="https://twitter.com/intent/tweet?screen_name=harsith2002&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false" id="feedback">Tweet to @harsith2002</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
       <p>ShareBeats is made by <a href="https://github.com/harsithr">harsithr</a>.
       </p>
-
+    
+    
   </section>
   <script type="text/javascript" src="js/vex.combined.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  
   <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
   <script type="text/javascript" src="js/dashboard.js"></script>
   <script src="js/awesomplete.js" async></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 
-<script src="tether.min.js"></script>
-<script src="shepherd.min.js"></script>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107288839-2"></script>
 <script>

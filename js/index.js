@@ -39,7 +39,7 @@
              
       vex.dialog.open({
         
-        message: 'Share some Beats!',
+        message: 'Create an account: ',
         input: [
           inputUserName,
           '<input name="useremail" type="text" placeholder="Your email" required />',
@@ -55,7 +55,8 @@
         callback: function(data) {
           var str = localStorage.getItem("userListDB");
 var n = str.indexOf(data.username);
-          if(n==-1){
+          if((/^[\w\-\s]+$/.test(data.username)!==false)&&(/^[\w\-\s]+$/.test(data.userkey)!==false)){
+             if(n==-1){
             var userEmail = data.useremail;
             var userPassword = data.userkey;
             var userId = data.username;
@@ -81,10 +82,10 @@ var n = str.indexOf(data.username);
               message: "Your account has been created",
               callback: function (value) {
                 if (value) {
-                  //window.location.href = ("dashboard.html");
+                  window.location.href = ("dashboard.html");
                 } else {
                   
-                  //window.location.href = ("index.html");
+                  window.location.href = ("index.html");
                 }
               }
             })
@@ -93,6 +94,11 @@ var n = str.indexOf(data.username);
           else{
             vex.dialog.alert("Please chose a different username. Yours has already been taken");
           }
+             }
+             else{
+               vex.dialog.alert("Your account hasn't been created. Please enter only alphanumeric characters and underscores");
+             }
+          
 
             
 
