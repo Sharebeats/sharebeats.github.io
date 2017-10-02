@@ -30,11 +30,14 @@ userList.on('value', snap => {
 
 function load() {
     vex.dialog.confirm({
-    message: '<div class="g-signin2" data-onsuccess="onSignIn"></div>',
+    message: 'Please click ok to sign in using google',
     callback: function (value) {
         if(value){
+            gapi.load('auth2',function(){
+               gapi.auth2.init(); 
+            });
             
-            
+         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
   //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
@@ -60,6 +63,7 @@ function load() {
             userList.set({
               xox: "xox"
             })
+         }
         }
         else{
             window.location.href = "about.html";
