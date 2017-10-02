@@ -62,9 +62,7 @@ function load() {
             })
          }
         }
-        else{
-            window.location.href = "about.html";
-        }
+       
     }
 })
   
