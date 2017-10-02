@@ -33,7 +33,16 @@
     <h2 class="project-tagline" id="project-tagline">Your Hub to Share some Beats with your Pals!</h2>
     <button href="#" class="btn" onclick="shareMusic()" id="share_music">Share some Beats!</button>
     <button href="#" class="btn" onclick="getMusic()" id="get_music" >Get my Beats!</button><br>
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div><br>
+    <a class="btn" href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
 
     <br>
      
