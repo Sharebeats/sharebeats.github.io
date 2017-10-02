@@ -32,10 +32,7 @@ function load() {
     vex.dialog.confirm({
     message: 'Please click ok to sign in using google',
     callback: function (value) {
-        if(value){
-            gapi.load('auth2',function(){
-               gapi.auth2.init(); 
-            });
+        
             
          function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
