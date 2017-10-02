@@ -1,13 +1,14 @@
 vex.defaultOptions.className = 'vex-theme-os';
-var config = {
-  apiKey: "AIzaSyBbcLi-m0HXKH34_wMwrbS1L9v2qMly7FA",
-  authDomain: "sharebeats-a6c19.firebaseapp.com",
-  databaseURL: "https://sharebeats-a6c19.firebaseio.com",
-  projectId: "sharebeats-a6c19",
-  storageBucket: "sharebeats-a6c19.appspot.com",
-  messagingSenderId: "36050196872"
-};
-firebase.initializeApp(config);
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDlVxqsU41fbrXLZ4dHV0knxvskeDsYe1w",
+    authDomain: "chat-app-9e0cb.firebaseapp.com",
+    databaseURL: "https://chat-app-9e0cb.firebaseio.com",
+    projectId: "chat-app-9e0cb",
+    storageBucket: "chat-app-9e0cb.appspot.com",
+    messagingSenderId: "962467197386"
+  };
+  firebase.initializeApp(config);
 var userList = firebase.database().ref("userList");
 userList.on('value', snap => {
   function escapeRegExp(string) {
