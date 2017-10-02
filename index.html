@@ -3,81 +3,70 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ShareBeats</title>
+    <meta name="google-signin-client_id" content="68076097008-u3284cgjuq1rkubmrn3vjhgh1ac6go17.apps.googleusercontent.com">
+
+  <title>ShareBeats - Your music sharing hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
   <link rel="stylesheet" href="css/normalize.css">
-   
-    <link rel="stylesheet" href="css/cayman.css">
-    <link rel="stylesheet" href="css/awesomplete.css" />
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/cayman.css">
   <link rel="stylesheet" href="css/vex.css" />
   <link rel="stylesheet" type="text/css" href="css/vex-theme-os.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="css/awesomplete.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+  
+
+
 
 </head>
 
-<body onload="load()">
-  <script type="text/javascript">
-    function goTo(){
-        window.location.href=("dashboard.html");
-      }</script>
-  
-    <section class="page-header">
-      <h1 class="project-name">ShareBeats</h1>
-    <h2 class="project-tagline">Your Hub to Share some Beats with your Pals!</h2>
-      
-      <a href="#" class="btn" onclick="goTo()">Sign In</a><br>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="false">Tweet</a>
-    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-      
-    </section>
-  
+<body >
+  <section class="page-header">
+    <h1 class="project-name" id="project-name">ShareBeats</h1>
+    <h2 class="project-tagline" id="project-tagline">Your Hub to Share some Beats with your Pals!</h2>
+    <button href="#" class="btn" onclick="shareMusic()" id="share_music">Share some Beats!</button>
+    <button href="#" class="btn" onclick="getMusic()" id="get_music" >Get my Beats!</button>
+    <br>
+     
+
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false" id="tweet">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </section>
 
   <section class="main-content">
-    <h5>Sign Up</h5>
     
-      <input type="text" placeholder="Username" id="userName"><br><br>
-      <input type="email" placeholder="Email" id="userEmail"><br><br>
-      <input type="password" placeholder="Password" id="userPassword"><br><br>
-    <button placeholder="Sign Up" onclick="userSignUp()"> Sign Up </button>  <br><br>
 
-    <p><b>ShareBeats is a simple music sharing website which allows you to share music with your friends with just a click.</b></p>
+    <h5>This is all your music!</h5>
+    <ul class="w3-ul w3-border" id="music_list">
+      <li>You don't have any shared music as of now. Go to <a>Get my Beats!</a> to check your beats</li>
+    </ul>
+<br>
+    <iframe id="apple_music" src="https://widgets.itunes.apple.com/widget.html?c=us&brc=FFFFFF&blc=FFFFFF&trc=FFFFFF&tlc=FFFFFF&d=&t=&m=music&e=album&ids=&wt=search&partnerId=&affiliate_id=&at=&ct=" frameborder=0 style="overflow-x:hidden;overflow-y:hidden;width:250px;height: 300px;border:0px"></iframe>
+    <hr>
+    <p>Please tweet your feedback here <a href="https://twitter.com/intent/tweet?screen_name=harsith2002&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false" id="feedback">Tweet to @harsith2002</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
-    <p>ShareBeats was born when a bunch of youngsters found it difficult to follow the new trends in the music world, by sharing their songs over WhatsApp and Messenger. We wanted to make a service that all of us could use to share our favourite songs with just a click and here is the result of 72 hours of work.</p>
-    <p><a href="https://unsplash.com/@arstyy?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank"><img src="css/austin-neill-247047.jpg" alt="" data-canonical-src="https://placekitten.com/g/1200/800/" style="max-width:100%;"></a></p>
-
-    <pre>Photo by <a href="https://unsplash.com/@arstyy?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge">Austin Neil</a> - <a href="www.unsplash.com">Unsplash</a></pre>
-
-    <p><b>How to use ShareBeats?</b> <br>It's pretty simple. First time users must sign up, and those who visit us again must login. Your dashboard has the list of music people have shared with you. Click the <b>ShareBeats</b>  button to share music with your firends. Enter your friend's username (aided with a simple autocomplete) and your favourite track. Then you are good to go</p>
-
-    <p>Good luck from ShareBeats Team</p>
-
-    <p>Please tweet your feedback here  <a href="https://twitter.com/intent/tweet?screen_name=harsith2002" class="twitter-mention-button" data-show-count="false">Tweet to @harsith2002</a>
-      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </p>
-
-    <footer class="site-footer">
-      <span class="site-footer-owner">ShareBeats is made by <a href="https://github.com/harsithr">harsithr</a>.</span><br>
-      <span class="site-footer-credits">This page is hosted by <a href="https://pages.github.com">GitHub Pages</a>.</span>
-    </footer>
-
+      <p>ShareBeats is made by <a href="https://github.com/harsithr">harsithr</a>.
+      </p>
+    
+    
   </section>
-  <script type="text/javascript" src="js/vex.combined.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script type="text/javascript" src="js/vex.combined.min.js"></script> 
   <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+  <script src="js/awesomplete.js" async></script>
   <script type="text/javascript" src="js/index.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="js/awesomplete.js" async></script>
-   <!-- Global Site Tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107288839-1"></script>
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107288839-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments)};
   gtag('js', new Date());
 
-  gtag('config', 'UA-107288839-1');
+  gtag('config', 'UA-107288839-2');
 </script>
+
 </body>
 
 </html>
