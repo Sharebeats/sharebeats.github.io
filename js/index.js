@@ -30,12 +30,10 @@ userList.on('value', snap => {
 
 function load() {
     vex.dialog.confirm({
-    message: 'Please click ok to sign in using google',
+    message: '<div class="g-signin2" data-onsuccess="onSignIn"></div>',
     callback: function (value) {
         if(value){
-            gapi.load('auth2',function(){
-               gapi.auth2.init(); 
-            });
+            
             
             var profile = googleUser.getBasicProfile();
   //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
