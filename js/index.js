@@ -29,12 +29,14 @@ userList.on('value', snap => {
 })
 
 function load() {
-    vex.dialog.confirm({
-    message: 'Please click ok to sign in using google',
-    callback: function (value) {
+    
         
-            
-         function onSignIn(googleUser) {
+            vex.dialog.alert("You must signin with google to continue");
+         
+        }
+       
+    
+function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
   //console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
@@ -60,12 +62,7 @@ function load() {
             userList.set({
               xox: "xox"
             })
-         }
-        }
-       
-    }
-})
-  
+  vex.dialog.alert("Hey "+ userId+" You have signed in.")
   vex.dialog.confirm({
     message: "Hey there! This a short user tour of the ShareBeats dashboard. You may skip it if this isn't your first time. Click 'Ok' to proceed",
     callback: function (value) {
@@ -82,8 +79,11 @@ function load() {
         }
     }
 })
+         }
   
-      }
+  
+  
+      
 
 
 function shareMusic() {
