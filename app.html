@@ -46,25 +46,15 @@
 
 	
 	
-
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-<script>
-  // Initialize Firebase
- 
-</script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase-database.js"></script>
-
-
-	<!-- DO NOT MODIFY -->
-	<!-- End Facebook Pixel Code -->
 </head>
-<body >
+<body>
 	<!-- this is where your index.nunjucks file will be displayed -->
-	<script type="text/javascript" src="index.js"></script>
+	    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+<script type="text/javascript" src="app.js"></script>
 
-<section id="base">
+<section id="base" onload="login_load()">
 	<div id="empty"></div>
 
 	<section id="preview">
@@ -80,59 +70,34 @@
 		</div>
 		
 		<div id="headline">
-			<section class="cd-intro">
-  <h1 class="cd-headline letters type">
-    <span class="cd-words-wrapper waiting">
-      <b class="is-visible">Discover new music</b>
-      <b>Share Beats</b>
-    <b>Reward the Indies</b>
-      <b>Listen to your tracks</b>
-    </span>
-    <span> on the go</span>
-  </h1>
-</section>
 
-			<h2>ShareBeats is an app that allows people to share the music that they love and listen to it with just a click</h2>
+
+			<h2>Hey {username}. This is your ShareBeats dashboard</h2>
 		</div>
 		
-		<!---<div id="email-form">
-			<p>Get notified when we launch Mimo for Android</p>
-			<form action="http://hellocode.us11.list-manage.com/subscribe/post?u=1cf4687b9bbfb4ba8e70bc2e5&amp;id=205ed9f71d" method="post" onSubmit="mixpanel.track('get_android_submitted')" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate beta-form" target="_blank"
-			 novalidate>
-				<input type="email" value="" id="mce-EMAIL" name="EMAIL" placeholder="jared@piedpiper.com" class="beta-input">
-				<input type="submit" name="subscribe" value="Submit" class="beta-button" id="mc-embedded-subscribe">
-			</form>
-		</div> --> 
+		<div >
+			<p>Share music!</p>
+			
+				<input type="email" value="" id="user_name" name="EMAIL" placeholder="Share to whom?" class="beta-input"><br>
+                <br><input type="email" value="" id="track_name" name="EMAIL" placeholder="Song?" class="beta-input">
+				<input type="submit" name="subscribe" value="Submit" class="beta-button" id="mc-embedded-subscribe" onclick="share_music()">
+			
+		</div> 
 		
-		<div id="buttons">
-			<a onclick="twitter_signin()">
-				<div class="action ios-button">
-					<img src="static/img/apple-icon.svg" alt="apple logo">Sign Up
-				</div>
-            </a>
-		</div>
+		
 	</section>
 
 	
 	<!--  FOOTER -->
 <section id="footer">
 	<div id="footer-wrapper">
-		<div class="footer-links">
-			
-			<a href="jobs/index.html" onClick="mixpanel.track('visit_jobs', {'source': 'footer'})">Jobs</a>
-			<a href="https://app.getmimo.com/account" onClick="mixpanel.track('visit_account', {'source': 'footer'})">Account</a>
-			<a href="cdn-cgi/l/email-protection.html#6f1c1a1f1f001d1b2f080a1b02060200410c0002" onClick="mixpanel.track('request_support', {'source': 'footer'})">Support</a>
-			<a href="https://medium.com/getmimo/mimo-press-kit-66f5da5b0375#.yr27fppcr" onClick="mixpanel.track('visit_press'), {'source': 'footer'}">Press</a>
-			<a href="legal/index.html" onClick="mixpanel.track('visit_legal',{'source': 'footer'})">Imprint</a>
-			<a href="terms/index.html" onClick="mixpanel.track('visit_privacy', {'source': 'footer'})">Privacy &amp; Terms</a>
-		</div>
+
 		<div class="footer-social">
 			<a href="https://fb.com/getmimo" onClick="mixpanel.track('visit_facebook', {'source': 'footer'})"><img src="static/img/fb-icon.svg" alt="facebook icon"></a>
 			<a href="https://twitter.com/getmimo" onClick="mixpanel.track('visit_twitter', {'source': 'footer'})"><img src="static/img/twitter-icon.svg" alt="facebook icon"></a>
 			<a href="https://medium.com/getmimo" onClick="mixpanel.track('visit_blog', {'source': 'footer'})"><img src="static/img/medium-icon.svg" alt="medium icon"></a>
 		</div>
 	</div>
-	<img src="static/img/vba-logo-black.svg" alt="vienna business agency" id="vba">
 </section>
 
 
