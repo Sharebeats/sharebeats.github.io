@@ -16,13 +16,15 @@ gapi.load('auth2', function() {
             }).then(function(auth2) {
                 console.log( "signed in: " + auth2.isSignedIn.get() );  
                 auth2.isSignedIn.listen(onSignIn);
-                
-                
-                  auth2.signIn();
-              console.log( "signedin");
+                function onSignIn(googleUser) {
+            console.log( "signedin");
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
             console.log("Name: " + profile.getName());
+        };
+                
+                  auth2.signIn();
+              
               
             });
         });
