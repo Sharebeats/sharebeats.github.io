@@ -8,7 +8,7 @@ var config = {
   };
   firebase.initializeApp(config);
 var database = firebase.database();
-
+alert("loaded");
 gapi.load('auth2', function() {
             gapi.auth2.init({
                 client_id: "797428156625-d95c3j7d1u70tst4t45m8sc18usd6792.apps.googleusercontent.com",
