@@ -11,7 +11,7 @@ var database = firebase.database();
 alert("loaded");
 gapi.load('auth2', function() {
             gapi.auth2.init({
-                client_id: "797428156625-d95c3j7d1u70tst4t45m8sc18usd6792.apps.googleusercontent.com",
+                client_id: "797428156625-bdcm4pn4gdslofiplg4451lc7rp1t4j8.apps.googleusercontent.com",
                 scope: "profile email" // this isn't required
             }).then(function(auth2) {
                 console.log( "signed in: " + auth2.isSignedIn.get() );  
@@ -19,15 +19,14 @@ gapi.load('auth2', function() {
                 
                 
                   auth2.signIn();
-              
-            });
-        });
-function onSignIn(googleUser) {
-            console.log( "signedin");
+              console.log( "signedin");
             // Useful data for your client-side scripts:
             var profile = googleUser.getBasicProfile();
             console.log("Name: " + profile.getName());
-        };
+              
+            });
+        });
+
 
 
 var fb_username = "@djsnake";
