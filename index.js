@@ -9,28 +9,16 @@ var config = {
   firebase.initializeApp(config);
 var database = firebase.database();
 alert("loaded");
-gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: "797428156625-bdcm4pn4gdslofiplg4451lc7rp1t4j8.apps.googleusercontent.com",
-                scope: "profile email" // this isn't required
-            }).then(function(auth2) {
-                console.log( "signed in: " + auth2.isSignedIn.get() );  
-                auth2.isSignedIn.listen(onSignIn);
-                function onSignIn(googleUser) {
-            console.log( "signedin");
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("Name: " + profile.getName());
-        };
-                
-                  auth2.signIn();
-              
-              
-            });
-        });
 
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 
-
+/*
 var fb_username = "@djsnake";
 function share_music(){
     var username = document.getElementById("user_name").value;
@@ -68,4 +56,27 @@ console.log("Success");
     for(i=0; i<ar.length; i++){
         console.log(ar[i]);
     }
- });*/
+ });
+ 
+ 
+ gapi.load('auth2', function() {
+            gapi.auth2.init({
+                client_id: "797428156625-bdcm4pn4gdslofiplg4451lc7rp1t4j8.apps.googleusercontent.com",
+                scope: "profile email" // this isn't required
+            }).then(function(auth2) {
+                console.log( "signed in: " + auth2.isSignedIn.get() );  
+                auth2.isSignedIn.listen(onSignIn);
+                function onSignIn(googleUser) {
+            console.log( "signedin");
+            // Useful data for your client-side scripts:
+            var profile = googleUser.getBasicProfile();
+            console.log("Name: " + profile.getName());
+        };
+                
+                  auth2.signIn();
+              
+              
+            });
+        });
+ 
+ */
