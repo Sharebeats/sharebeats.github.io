@@ -1,113 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<!-- Mirrored from getmimo.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Oct 2017 10:42:36 GMT -->
+<html>
 <head>
-	<meta charset="utf-8">
-  <meta name="google-signin-client_id" content="797428156625-bdcm4pn4gdslofiplg4451lc7rp1t4j8.apps.googleusercontent.com">
-
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Mimo is an iOS app that teaches programming, HTML, CSS, JavaScript, Swift, and more through gamified and interactive lessons on the go">
-	<meta name="keywords" content="Mimo, Micro-Learning, Swift, iPhone, Code, Programming, Learn, Course, Tutorial, Lesson">
-	<meta name="author" content="Mimo Inc.">
-	<meta name="apple-itunes-app" content="app-id=1133960732, affiliate-data=1000lpyT">
-
-	<meta property="og:title" content="Mimo: Learn how to code on your phone"/>
-	<meta property="og:type" content="website"/>
-	<meta property="og:url" content="index.html"/>
-	<meta property="og:description" content="Mimo is an iOS app that teaches programming, HTML, CSS, JavaScript, Swift, and more through gamified and interactive lessons on the go"/>
-
-	<meta name="twitter:url" content="index.html">
-	<meta name="twitter:title" content="Mimo: Learn how to code on your phone">
-	<meta name="twitter:description" content="Mimo is an iOS app that teaches programming, HTML, CSS, JavaScript, Swift, and more through gamified and interactive lessons on the go">
-
-	
-	<script src="cdn-cgi/apps/head/MU9MQkFgoAddDyvxAC51xpT5ziw.js"></script><link rel="apple-touch-icon" sizes="57x57" href="static/img/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="static/img/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="static/img/favicon/apple-icon-72x72.html">
-	<link rel="apple-touch-icon" sizes="76x76" href="static/img/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="static/img/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="static/img/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="static/img/favicon/apple-icon-144x144.html">
-	<link rel="apple-touch-icon" sizes="152x152" href="static/img/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="static/img/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="static/img/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="static/img/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="static/img/favicon/favicon-96x96.html">
-	<link rel="icon" type="image/png" sizes="16x16" href="static/img/favicon/favicon-16x16.png">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="../static/img/favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-
-	<title>ShareBeats</title>
-	<link rel="stylesheet" href="static/css/main.min.css">
-
-	
-	<link rel="stylesheet" type="text/css" href="r/fonts/565087/D37F78A841D5CC596.css" />
-
-	
-	
+  <title>ShareBeats - SignUp</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="vex.css" />
+<link rel="stylesheet" href="vex-theme-os.css">
 </head>
 <body>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-	<!-- this is where your index.nunjucks file will be displayed -->
-	    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
-<script type="text/javascript" src="index.js"></script>
+<p>Your account has been created</p>
+ <button href="app.html">Sign In</button>
 
-<section id="base" onload="login_load()">
-	<div id="empty"></div>
+  
 
-	<section id="preview">
-		<!--- This is where the SoundCloud podcast explaining the story behind ShareBeats will be included --> 
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 
-	</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
-	<section id="main">
-		<br><br>
-		<div id="logo-wrapper">
-			<a href="index.html"><img src="static/img/nav-logo.svg" id="logo" alt="mimo logo"></a>
-			<a href="jobs/index.html" onClick="mixpanel.track('visit_jobs', {'source': 'banner'})"><span id="hiring-banner">We're hiring</div></a>
-		</div>
-		
-		<div id="headline">
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyDO3TPoh5XNX0zHIvaYm_UqMXZdDg5WO4M",
+    authDomain: "newagent-7ef9c.firebaseapp.com",
+    databaseURL: "https://newagent-7ef9c.firebaseio.com",
+    projectId: "newagent-7ef9c",
+    storageBucket: "newagent-7ef9c.appspot.com",
+    messagingSenderId: "198210573822"
+  };
+  firebase.initializeApp(config);
+  </script>
+   <script type="text/javascript" src="vex.combined.min.js"></script> 
+  <script>vex.defaultOptions.className = 'vex-theme-os'</script>
 
+  <script src="index.js"></script>
 
-			<h2>Hey {username}. This is your ShareBeats dashboard</h2>
-		</div>
-		
-		<div >
-			<p>Share music!</p>
-			
-				<input type="email" value="" id="user_name" name="EMAIL" placeholder="Share to whom?" class="beta-input"><br>
-                <br><input type="email" value="" id="track_name" name="EMAIL" placeholder="Song?" class="beta-input">
-				<input type="submit" name="subscribe" value="Submit" class="beta-button" id="mc-embedded-subscribe" onclick="share_music()">
-			
-		</div> 
-		
-		
-	</section>
-
-	
-	<!--  FOOTER -->
-<section id="footer">
-	<div id="footer-wrapper">
-
-		<div class="footer-social">
-			<a href="https://fb.com/getmimo" onClick="mixpanel.track('visit_facebook', {'source': 'footer'})"><img src="static/img/fb-icon.svg" alt="facebook icon"></a>
-			<a href="https://twitter.com/getmimo" onClick="mixpanel.track('visit_twitter', {'source': 'footer'})"><img src="static/img/twitter-icon.svg" alt="facebook icon"></a>
-			<a href="https://medium.com/getmimo" onClick="mixpanel.track('visit_blog', {'source': 'footer'})"><img src="static/img/medium-icon.svg" alt="medium icon"></a>
-		</div>
-	</div>
-</section>
-
-
-</section>
-
-	
 </body>
-
 </html>
